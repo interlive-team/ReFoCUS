@@ -1,0 +1,6 @@
+server.log
+nohup.out
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
