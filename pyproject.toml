@@ -1,0 +1,64 @@
+[project]
+name = "refocus"
+version = "0.1.0"
+description = "ReFoCUS: Reinforcement-guided Frame Optimization for Contextual Understanding"
+readme = "README.md"
+requires-python = "==3.11.*"
+dependencies = [
+    "torch==2.5.1",
+    "torchvision==0.20.1",
+    "transformers==4.57.1",
+    "accelerate==1.11.0",
+    "deepspeed==0.19.2",
+    "flash-attn==2.7.3",
+    "causal-conv1d==1.5.0.post8",
+    "mamba-ssm",
+    "decord==0.6.0",
+    "opencv-python-headless==4.13.0.92",
+    "av==15.1.0",
+    "imageio==2.37.3",
+    "ffmpeg==1.4",
+    "numpy==2.4.6",
+    "pillow==12.2.0",
+    "scipy==1.17.1",
+    "filelock==3.29.4",
+    "lmms-eval",
+    "qwen-vl-utils==0.0.14",
+    "tqdm==4.68.3",
+    "wandb==0.25.0",
+    "openai==2.44.0",
+    "pywsd==1.3.0",
+    "hf-transfer==0.1.9",
+    "huggingface-hub[cli]==0.36.2",
+    "fastapi==0.138.2",
+    "uvicorn==0.49.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["refocus"]
+
+[[tool.uv.index]]
+name = "pytorch-cu124"
+url = "https://download.pytorch.org/whl/cu124"
+explicit = true
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cu124" }]
+torchvision = [{ index = "pytorch-cu124" }]
+causal-conv1d = { url = "https://github.com/Dao-AILab/causal-conv1d/releases/download/v1.5.0.post8/causal_conv1d-1.5.0.post8+cu12torch2.5cxx11abiFALSE-cp311-cp311-linux_x86_64.whl" }
+mamba-ssm = { git = "https://github.com/klae01/ma2mba", rev = "387fce86e9cba3e379b2d376c78088f4d35e880e" }
+lmms-eval = { git = "https://github.com/klae01/lmms-eval", rev = "c079c51aba83e64b7eb2c91e579e7c50da907af5" }
+
+[tool.uv.extra-build-dependencies]
+flash-attn = [{ requirement = "torch", match-runtime = true }]
+mamba-ssm = [{ requirement = "torch", match-runtime = true }]
+
+[tool.uv.extra-build-variables]
+# Force ma2mba to COMPILE from source instead of downloading an upstream
+# state-spaces/mamba prebuilt wheel (its setup.py grabs one when torch/cuda/abi
+# tags match — which match-runtime makes happen, silently replacing the fork).
+mamba-ssm = { MAMBA_FORCE_BUILD = "TRUE" }

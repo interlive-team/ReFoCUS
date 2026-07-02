@@ -1,0 +1,19 @@
+# envs / caches
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.uv/
+# pipeline artifacts
+work/
+output/
+logs/
+*.log
+frame_order.lock
+*.db
+*.db.dir
+*.db.dat
+*.db.bak
+# misc
+.DS_Store
+.ipynb_checkpoints/
