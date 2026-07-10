@@ -32,7 +32,7 @@ video QA benchmarks.
 
 - [x] Paper release
 - [x] [Project page](https://interlive-team.github.io/ReFoCUS)
-- [ ] Model weights release
+- [x] Model weights release ([ReFoCUS-1.3B](https://huggingface.co/interlive/ReFoCUS-1.3B))
 - [x] Evaluation code
 - [ ] Training code
 
