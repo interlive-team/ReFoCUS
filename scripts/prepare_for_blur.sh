@@ -3,7 +3,7 @@
 # temporal segments.  Produces per-sample {indices, blur[]}; the VLM applies the blur at
 # eval time (evaluate.sh must set BLUR_SIGMA, which switches to the HF_FS_*_blur model).
 #
-# Usage:  scripts/prepare_for_blur.sh <selector_ckpt> <benchmark> [run_name]
+# Usage:  uv run bash scripts/prepare_for_blur.sh <selector_ckpt> <benchmark> [run_name]
 # Tunables: NUM_FRAMES=32  BLUR_MODE=top_blur|random_blur  K=8  NUMQUERY=64  USEFIRST=64
 #           BLUR_SEED=42   (+ build_database tunables)
 set -euo pipefail

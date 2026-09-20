@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Segment blur/deblur writer (simplified).
+Segment blur/deblur writer.
 
 - Split [first, last] into N equal segments.
 - Use segment centers (uniform mid) as representative frame indices.
@@ -25,7 +25,7 @@ import numpy as np
 
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(
-        description="Write segment-wise blur/deblur with uniform-mid indices (simplified)"
+        description="Write segment-wise blur/deblur with uniform-mid indices"
     )
     p.add_argument("in_db", type=str, help="Path to input shelve DB")
     p.add_argument("out_db", type=str, help="Path to output shelve DB")

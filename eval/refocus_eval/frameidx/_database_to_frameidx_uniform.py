@@ -8,8 +8,8 @@ Each DB item must contain a key "frame_idx" whose 0th and -1st elements are the 
 
 Strategies
 ----------
-- endpoints : Uniform sampling including both ends over [first, last].
-- centers   : Split [first, last] into N equal segments and pick the center of each segment.
+- end : Uniform sampling including both ends over [first, last].
+- mid : Split [first, last] into N equal segments and pick the center of each segment.
 
 Usage
 -----

@@ -3,7 +3,7 @@
 # scores and samples frames uniformly over each video's range.  Still needs the per-sample
 # frame range, so it reuses (or builds, idempotently) the selection DB.
 #
-# Usage:  scripts/prepare_for_uniform.sh <selector_ckpt> <benchmark> [run_name]
+# Usage:  uv run bash scripts/prepare_for_uniform.sh <selector_ckpt> <benchmark> [run_name]
 # Tunables: NUM_FRAMES=32  MODE=end|mid   (+ the build_database tunables)
 set -euo pipefail
 source "$(dirname "${BASH_SOURCE[0]}")/_common.sh"

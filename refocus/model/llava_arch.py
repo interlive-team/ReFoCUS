@@ -178,7 +178,7 @@ class LlavaMetaForCausalLM(ABC):
         image_feature = image_feature.view(num_frames, -1, num_dim)
         return image_feature
 
-    def encode_images(self, images, chunk_size=32):
+    def encode_images(self, images, chunk_size):
         vision_tower = self.get_model().get_vision_tower()
         mm_projector = self.get_model().mm_projector
 
