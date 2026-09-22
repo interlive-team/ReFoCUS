@@ -104,6 +104,9 @@ class RefocusModel(LlavaMetaModel, dummy_cls):
 
 class RefocusForFrameSelection(PreTrainedModel, MambaLMHeadModel, LlavaMetaForCausalLM):
     config_class = RefocusConfig
+    # MambaLMHeadModel ties lm_head to backbone.embedding; declaring it lets
+    # safetensors drop the duplicate on save and from_pretrained re-tie on load.
+    _tied_weights_keys = ["lm_head.weight"]
     get_input_embeddings = MambaLMHeadModel.get_input_embeddings
     gradient_checkpointing_enable = MambaLMHeadModel.gradient_checkpointing_enable
     gradient_checkpointing_disable = MambaLMHeadModel.gradient_checkpointing_disable

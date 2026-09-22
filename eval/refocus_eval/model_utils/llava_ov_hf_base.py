@@ -1,8 +1,5 @@
 """HuggingFace-native LLaVA-OneVision backend for ReFoCUS frame-selection evaluation.
 
-Replaces the original LLaVA-NeXT (`llava.model.builder.load_pretrained_model`) path with
-the official `transformers` implementation, so no LLaVA-NeXT clone is required.
-
 Use the HF-format checkpoints, e.g.:
     llava-hf/llava-onevision-qwen2-0.5b-ov-hf
     llava-hf/llava-onevision-qwen2-7b-ov-hf
@@ -64,12 +61,6 @@ class LlavaOVHFBase(lmms):
         self.model = LlavaOnevisionForConditionalGeneration.from_pretrained(
             pretrained, torch_dtype=self.dtype, device_map=self.device
         )
-        # The original LLaVA-OneVision projector was trained on the RAW penultimate SigLIP
-        # encoder output. In transformers >=4.5x the vision tower's hidden_states[-1] returned
-        # to LlavaOnevision is post_layernorm-ed (the output-capture machinery overwrites the
-        # last entry with last_hidden_state = post_layernorm(out)), which rescales the feature
-        # distribution and lowers accuracy (~3.4% on Video-MME). Neutralize post_layernorm so
-        # the projector receives the raw features, matching the original implementation exactly.
         try:
             self.model.model.vision_tower.vision_model.post_layernorm = (
                 torch.nn.Identity()

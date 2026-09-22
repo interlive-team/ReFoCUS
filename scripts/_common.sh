@@ -2,17 +2,15 @@
 # Shared config + helpers for the ReFoCUS "frame-selection -> VLM" evaluation pipeline.
 #
 # Pipeline (2 stages):
-#   Stage 1  build the selection DATABASE with the ReFoCUS selector  (scripts/prepare*.sh)
-#   Stage 2  convert DB -> frame indices per method                  (scripts/prepare*.sh)
-#   Stage 3  run a VLM on the selected frames                        (scripts/evaluate.sh)
+#   Stage 1  build the selection DATABASE with the ReFoCUS selector,
+#            then export frame indices per method                    (scripts/prepare*.sh)
+#   Stage 2  run a VLM on the selected frames                        (scripts/evaluate.sh)
 #
 # The DB is a python `shelve` keyed by sample, each value = {frame_idx, candidates, ...}
 # produced by lmms-eval model `HF_FS_refocus` (the trained ReFoCUS selector).
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-# `refocus` (the model pkg, used by the selector) + `refocus_eval` (the lmms-eval plugin)
-export PYTHONPATH="${REPO_ROOT}:${REPO_ROOT}/eval${PYTHONPATH:+:$PYTHONPATH}"
 # registers the HF_FS_* frame-selection models into the (officially installed) lmms-eval
 export LMMS_EVAL_PLUGINS="${LMMS_EVAL_PLUGINS:-refocus_eval}"
 export DECORD_EOF_RETRY_MAX=102400

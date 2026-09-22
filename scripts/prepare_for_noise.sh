@@ -5,7 +5,7 @@
 # This builds a SEPARATE noise database with the force-index selector (HF_FS_refocus_noise),
 # then exports indices exactly like the refocus method (`_database_to_frameidx.py`).
 #
-# Usage:  scripts/prepare_for_noise.sh <selector_ckpt> <benchmark> [run_name]
+# Usage:  uv run bash scripts/prepare_for_noise.sh <selector_ckpt> <benchmark> [run_name]
 # Tunables:
 #   CANDIDATE=0          noise level: candidate index = (#forced prefix frames - 1)
 #   NUM_QUERY_FRAMES=64  NUM_FRAMES=32  MINFRAMES=128  SORT=1   (+ build_database tunables)

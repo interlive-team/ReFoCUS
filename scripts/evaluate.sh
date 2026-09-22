@@ -1,13 +1,13 @@
 #!/bin/bash
-# Stage 3: run a VLM on a precomputed frame-index DB and score the benchmark.
+# Stage 2: run a VLM on a precomputed frame-index DB and score the benchmark.
 # Runs in the VLM-eval env (env B: modern transformers).  The VLM repo is the FIRST arg;
 # it is mapped to the matching HF_FS_* frame-selection wrapper + any model-specific args.
 #
 # Usage:
-#   scripts/evaluate.sh <selector_ckpt> <benchmark> <run_name> <vlm_repo> [extra_model_args]
+#   uv run bash scripts/evaluate.sh <selector_ckpt> <benchmark> <run_name> <vlm_repo> [extra_model_args]
 # e.g.
-#   scripts/evaluate.sh interlive/ReFoCUS-1.3b videomme refocus llava-hf/llava-onevision-qwen2-7b-ov-hf
-#   BLUR_SIGMA=50 scripts/evaluate.sh interlive/ReFoCUS-1.3b videomme refocus OpenGVLab/InternVL3-8B-hf   # blur run
+#   uv run bash scripts/evaluate.sh interlive/ReFoCUS-1.3b videomme refocus llava-hf/llava-onevision-qwen2-7b-ov-hf
+#   BLUR_SIGMA=50 uv run bash scripts/evaluate.sh interlive/ReFoCUS-1.3b videomme refocus OpenGVLab/InternVL3-8B   # blur run
 #
 # <selector_ckpt> <benchmark> <run_name> match the prepare.sh call; the frame-index DB it
 # produced is located automatically.

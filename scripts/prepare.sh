@@ -1,12 +1,12 @@
 #!/bin/bash
-# Stage 1+2 for the ReFoCUS (main / "refocus baseline") method.
+# Stage 1 for ReFoCUS frame selection.
 # Builds the selection DATABASE with the trained ReFoCUS selector, then exports the
 # ReFoCUS-selected frame indices.  Runs in the SELECTOR env (env A: mamba transformers).
 #
 # Usage:
-#   scripts/prepare.sh <selector_ckpt> <benchmark> [run_name]
+#   uv run bash scripts/prepare.sh <selector_ckpt> <benchmark> [run_name]
 # e.g.
-#   scripts/prepare.sh interlive/ReFoCUS-1.3b videomme
+#   uv run bash scripts/prepare.sh interlive/ReFoCUS-1.3b videomme
 #
 # Tunables (env vars, with the reference defaults):
 #   NUM_QUERY_FRAMES=64  NUM_FRAMES=32  CANDIDATE=0  MINFRAMES=128  SORT=1

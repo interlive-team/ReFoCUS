@@ -1,0 +1,13 @@
+{
+    "bf16": { "enabled": true },
+    "fp16": { "enabled": false },  
+    "train_micro_batch_size_per_gpu": "auto",
+    "train_batch_size": "auto",
+    "gradient_accumulation_steps": "auto",
+    "zero_optimization": {
+        "stage": 1,
+        "load_from_fp32_weights": true,
+        "contiguous_gradients": true,
+        "overlap_comm": true
+    }
+}
